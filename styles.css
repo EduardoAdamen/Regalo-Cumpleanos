@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+  background: linear-gradient(to right, #e74c3c, #000000);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 16px; /* Agrega espacio a los lados */
+  box-sizing: border-box;  /* Limita el ancho máximo */
+}
+
+.text h1,
+.text h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.text h1 {
+  font-size: clamp(2.5rem, 4vw, 4rem); /* Tamaño adaptable */
+  font-weight: 700;
+  color: #facccc;
+  text-shadow: 
+    0 0 3px #fff,
+    0 0 6px #ff6f61,
+    0 0 8px #ff6f61;
+}
+
+.text h2 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 500;
+  color: #ffcf61;
+  text-shadow: 
+    0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 3px rgba(255, 207, 97, 0.4),
+    0 0 6px rgba(255, 207, 97, 0.3);
+}
+
+.content {
+  margin-top: 30px;
+}
+
+.content h1 {
+    font-family: "Dancing Script", cursive;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    background: linear-gradient(0deg, #f76591, #ffc16f);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: left; /* Cambiado a la izquierda */
+    line-height: 1.1;
+    margin-bottom: 36px;
+  }
+
+.content p {
+    font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+
+
+/* Globos */
+.balloons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -10%; /* Start slightly off-screen */
+    width: 50px;
+    height: 70px;
+    background: #ff6f61;
+    border-radius: 50%;
+    animation: floatUp 6s ease-in infinite;
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.5);
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-40%);
+    width: 2px;
+    height: 20px;
+    background: #aaa;
+}
+
+/* Animaciones */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-900%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Variación de globos */
+.balloon:nth-child(1) {
+    left: 20%;
+    animation-duration: 4s;
+    background: #ff9a9e;
+}
+.balloon:nth-child(2) {
+    left: 40%;
+    animation-duration: 5s;
+    background: #fad0c4;
+}
+.balloon:nth-child(3) {
+    left: 60%;
+    animation-duration: 6s;
+    background: #ff6f61;
+}
+.balloon:nth-child(4) {
+    left: 80%;
+    animation-duration: 4.5s;
+    background: #ffb3ba;
+}
+
+/* Estilo del confeti */
+@keyframes confetti {
+    0% {
+        transform: translateY(-10%) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti {
+    position: fixed;
+    top: -10%; /* Empieza fuera de la pantalla */
+    left: calc(10% + 80px * var(--i)); /* Posición horizontal variable */
+    width: 10px;
+    height: 20px;
+    background: var(--confetti-color); /* Color dinámico */
+    opacity: 0;
+    animation: confetti 4s linear infinite;
+    animation-delay: calc(-2s * var(--i)); /* Animación escalonada */
+}
+/* Estilo para la posdata */
+.footer {
+    position: fixed;
+    bottom: 0; /* Coloca el pie de página en la parte inferior */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    color: #fff; /* Texto blanco */
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Quicksand', sans-serif; /* Usa la fuente que prefieras */
+}
+.footer p {
+    display: inline;
+    margin: 0 10px; /* Espacio entre los textos */
+}
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+.music-control {
+    position: fixed;
+    top: 10px; /* Espaciado desde la parte superior */
+    right: 10px; /* Espaciado desde el borde derecho */
+    z-index: 100; /* Asegura que esté encima de otros elementos */
+}
+
+.music-control button {
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 50%; /* Forma circular para el botón */
+    color: white;
+    font-size: 1.5rem; /* Tamaño del icono */
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.music-control button:hover {
+    background-color: #e64e4e;
+    transform: scale(1.1); /* Efecto de agrandamiento al pasar el mouse */
+}
+
+
+
+  
+  
+  
+
